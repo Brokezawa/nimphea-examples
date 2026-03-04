@@ -16,13 +16,13 @@
 
 import nimphea
 import nimphea/nimphea_macros
-import ../src/per/i2c
-import ../src/dev/oled_sh1106
+import nimphea/per/i2c
+import nimphea/dev/oled_sh1106
 import nimphea/nimphea_ui_core
 import nimphea/nimphea_ui_events
 import nimphea/nimphea_ui_controls
 import nimphea/nimphea_menu as menu_mod
-import ../src/ui/menu_builder
+import nimphea/ui/menu_builder
 
 useNimpheaNamespace()
 useNimpheaModules(sh1106, ui_core, ui, menu)

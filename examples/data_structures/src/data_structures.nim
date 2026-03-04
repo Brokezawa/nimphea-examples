@@ -10,6 +10,7 @@
 ## and audio-rate safety (no heap allocation).
 
 import nimphea
+import nimphea/hid/logger
 import nimphea/nimphea_fifo
 import nimphea/nimphea_stack
 import nimphea/nimphea_ringbuffer
@@ -48,54 +49,54 @@ proc audioCallback(input, output: AudioBuffer, size: int) {.cdecl.} =
 
 proc demonstrateFifo() =
   ## Demonstrate FIFO queue for event handling
-  echo "=== FIFO Queue Demo ==="
+  printLine("=== FIFO Queue Demo ===")
   
   var fifo: Fifo[8, int]
   fifo.init()
   
   # Push events
-  echo "Pushing events: 1, 2, 3, 4"
+  printLine("Pushing events: 1, 2, 3, 4")
   assert fifo.push(1)
   assert fifo.push(2)
   assert fifo.push(3)
   assert fifo.push(4)
-  echo "Queue length: ", fifo.len(), " / ", fifo.capacity()
+  printLine("Queue length: ", fifo.len(), " / ", fifo.capacity())
   
   # Pop events (FIFO order)
   var event: int
   while fifo.pop(event):
-    echo "Processing event: ", event
+    printLine("Processing event: ", event)
   
-  echo "Queue is now empty: ", fifo.isEmpty()
-  echo ""
+  printLine("Queue is now empty: ", fifo.isEmpty())
+  printLine("")
 
 proc demonstrateStack() =
   ## Demonstrate Stack for undo/redo
-  echo "=== Stack (Undo/Redo) Demo ==="
+  printLine("=== Stack (Undo/Redo) Demo ===")
   
   var paramHistory: Stack[5, float32]
   paramHistory.init()
   
   # Record parameter changes
-  echo "Recording parameter values: 0.0, 0.5, 0.7, 1.0"
+  printLine("Recording parameter values: 0.0, 0.5, 0.7, 1.0")
   assert paramHistory.push(0.0)
   assert paramHistory.push(0.5)
   assert paramHistory.push(0.7)
   assert paramHistory.push(1.0)
   
-  echo "History depth: ", paramHistory.len()
+  printLine("History depth: ", paramHistory.len())
   
   # Undo (pop in reverse order)
   var value: float32
-  echo "Undoing changes:"
+  printLine("Undoing changes:")
   while paramHistory.pop(value):
-    echo "  Restored value: ", value
+    printLine("  Restored value: ", value)
   
-  echo ""
+  printLine("")
 
 proc demonstrateRingBuffer() =
   ## Demonstrate RingBuffer for audio buffering
-  echo "=== RingBuffer (Audio Buffer) Demo ==="
+  printLine("=== RingBuffer (Audio Buffer) Demo ===")
   
   var audioBuffer: RingBuffer[16, float32]
   audioBuffer.init()
@@ -103,21 +104,21 @@ proc demonstrateRingBuffer() =
   # Write audio samples
   let samples = [0.1'f32, 0.2'f32, 0.3'f32, 0.4'f32, 0.5'f32]
   let written = audioBuffer.writeBlock(samples)
-  echo "Wrote ", written, " samples to ring buffer"
-  echo "Buffer contains: ", audioBuffer.available(), " / ", audioBuffer.capacity(), " samples"
+  printLine("Wrote ", written, " samples to ring buffer")
+  printLine("Buffer contains: ", audioBuffer.available(), " / ", audioBuffer.capacity(), " samples")
   
   # Read back samples
   var readBuffer: array[5, float32]
   let readCount = audioBuffer.readBlock(readBuffer)
-  echo "Read ", readCount, " samples:"
+  printLine("Read ", readCount, " samples:")
   for i in 0 ..< readCount:
-    echo "  Sample[", i, "] = ", readBuffer[i]
+    printLine("  Sample[", i, "] = ", readBuffer[i])
   
-  echo ""
+  printLine("")
 
 proc demonstrateFixedStr() =
   ## Demonstrate FixedStr for display text
-  echo "=== FixedStr (Display Text) Demo ==="
+  printLine("=== FixedStr (Display Text) Demo ===")
   
   var text: FixedStr[32]
   text.init()
@@ -127,56 +128,57 @@ proc demonstrateFixedStr() =
   discard text.add(440)
   discard text.add(" Hz")
   
-  echo "Display text: '", $text, "'"
-  echo "Length: ", text.len(), " / ", text.capacity()
+  printLine("Display text: '", $text, "'")
+  printLine("Length: ", text.len(), " / ", text.capacity())
   
   # Replace content
   discard text.set("Volume: 75%")
-  echo "Updated text: '", $text, "'"
+  printLine("Updated text: '", $text, "'")
   
   # Character access
   text[0] = 'v'  # lowercase 'v'
-  echo "Modified text: '", $text, "'"
+  printLine("Modified text: '", $text, "'")
   
-  echo ""
+  printLine("")
 
 proc demonstrateCapacityLimits() =
   ## Demonstrate capacity limits and overflow handling
-  echo "=== Capacity Limits Demo ==="
+  printLine("=== Capacity Limits Demo ===")
   
   var smallFifo: Fifo[4, int]
   smallFifo.init()
   
   # Fill to capacity
-  echo "Filling FIFO (capacity 4)..."
+  printLine("Filling FIFO (capacity 4)...")
   for i in 0..3:
     if smallFifo.push(i):
-      echo "  Pushed ", i, " (size: ", smallFifo.len(), ")"
+      printLine("  Pushed ", i, " (size: ", smallFifo.len(), ")")
   
-  echo "FIFO is full: ", smallFifo.isFull()
+  printLine("FIFO is full: ", smallFifo.isFull())
   
   # Try to overflow
   if not smallFifo.push(99):
-    echo "  Rejected value 99 - FIFO is full!"
+    printLine("  Rejected value 99 - FIFO is full!")
   
   # Free space and add
   var dummy: int
   discard smallFifo.pop(dummy)
-  echo "Popped one element, size now: ", smallFifo.len()
+  printLine("Popped one element, size now: ", smallFifo.len())
   
   if smallFifo.push(99):
-    echo "  Successfully pushed 99 after freeing space"
+    printLine("  Successfully pushed 99 after freeing space")
   
-  echo ""
+  printLine("")
 
 proc main() =
-  echo "======================================"
-  echo "  Nimphea Data Structures Demo"
-  echo "======================================"
-  echo ""
+  printLine("======================================")
+  printLine("  Nimphea Data Structures Demo")
+  printLine("======================================")
+  printLine("")
   
   # Initialize hardware
   daisy.init()
+  startLog()
   daisy.setBlockSize(48)
   
   # Initialize data structures
@@ -194,11 +196,11 @@ proc main() =
   
   # Set up display text
   discard displayText.set("Delay: 100ms")
-  echo "======================================"
-  echo "Starting audio with delay effect..."
-  echo "Display shows: '", $displayText, "'"
-  echo "======================================"
-  echo ""
+  printLine("======================================")
+  printLine("Starting audio with delay effect...")
+  printLine("Display shows: '", $displayText, "'")
+  printLine("======================================")
+  printLine("")
   
   # Start audio processing with delay effect
   daisy.startAudio(audioCallback)
@@ -218,7 +220,7 @@ proc main() =
     if loopCount mod 5 == 0:
       let seconds = loopCount
       let samplesProcessed = sampleCounter * 48  # 48 samples per callback
-      echo "Runtime: ", seconds, "s | Samples: ", samplesProcessed, " | Buffer: ", delayBuffer.available()
+      printLine("Runtime: ", seconds, "s | Samples: ", samplesProcessed, " | Buffer: ", delayBuffer.available())
 
 when isMainModule:
   main()

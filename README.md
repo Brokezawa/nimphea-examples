@@ -2,8 +2,6 @@
 
 This repository contains a collection of examples for the Nimphea Nim wrapper for the Daisy Audio Platform.
 
-> **Requires Nimphea v1.1.0 or later.**
-
 ## Structure
 
 Each example is a standalone Nim project located in the `examples/` directory.
@@ -25,6 +23,52 @@ nimble flash # Via USB DFU
 # OR
 nimble stlink # Via ST-Link probe
 ```
+
+## Boot Modes
+
+Examples support three boot modes controlled by compiler defines in `project.nimble`:
+
+### BOOT_NONE (Default)
+- Direct flash to internal flash (0x08000000)
+- No bootloader required
+- Best for development and simple projects
+- Use with `nimble stlink` (ST-Link) or `nimble flash` (DFU)
+
+### BOOT_SRAM
+- Application runs from SRAM (0x20000000), loaded by DFU bootloader
+- Requires pre-installed DFU bootloader on device
+- Allows iterative development without re-flashing bootloader
+- Limited to ~512KB (SRAM size)
+- Use: Add `-d:bootSram` to `customDefines` in project.nimble
+- Flash with `nimble flash` (DFU only)
+
+### BOOT_QSPI
+- Application stored in QSPI flash (0x90040000)
+- Requires DFU bootloader with QSPI support
+- Provides 128MB additional storage for large applications
+- Essential for applications with large libraries (e.g., CMSIS-DSP)
+- Use: Add `-d:bootQspi` to `customDefines` in project.nimble
+- Flash with `nimble flash` (DFU only)
+
+For detailed information, see [BOOT_MODES.md](../nimphea/docs/BOOT_MODES.md).
+
+## Optional Libraries
+
+Examples can opt-in to additional libraries via compiler defines:
+
+### CMSIS-DSP
+- Optimized ARM math and signal processing functions
+- ~1MB library - requires BOOT_QSPI mode due to size
+- Add `-d:useCMSIS` to `customDefines` in project.nimble
+- Example: `cmsis_demo` demonstrates FFT capabilities
+
+### FatFs LFN
+- Long filename support for file operations
+- Enables filenames longer than 8.3 characters
+- Add `-d:useFatFsLFN` to `customDefines` in project.nimble
+- Used with QSPI storage for complex file systems
+
+For more details, see [BUILD_SYSTEM.md](../nimphea/docs/BUILD_SYSTEM.md).
 
 ## Hardware Testing
 

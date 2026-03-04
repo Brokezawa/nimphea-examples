@@ -29,7 +29,7 @@
 ## Press button on D2 to manually advance modes.
 
 import nimphea
-import ../src/hid/ctrl
+import nimphea/hid/ctrl
 import std/math
 
 useNimpheaNamespace()

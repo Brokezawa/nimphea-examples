@@ -21,7 +21,7 @@
 ## - GATE_IN: Gate/trigger input
 
 import nimphea
-import ../src/boards/daisy_versio
+import nimphea/boards/daisy_versio
 
 useNimpheaNamespace()
 

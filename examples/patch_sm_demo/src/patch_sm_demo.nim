@@ -19,7 +19,7 @@
 ## - Inputs are normalized 0.0-1.0 (representing -5V to +5V)
 ## - Outputs are 0-5V (set directly in volts)
 
-import ../src/boards/daisy_patch_sm
+import nimphea/boards/daisy_patch_sm
 import nimphea/nimphea_macros
 
 useNimpheaNamespace()

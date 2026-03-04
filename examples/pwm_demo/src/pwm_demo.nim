@@ -39,8 +39,8 @@
 ## **Modes**: Cycles through LED fade, RGB rainbow, and servo sweep.
 
 import nimphea
-import ../src/per/pwm
-import ../src/per/uart
+import nimphea/per/pwm
+import nimphea/per/uart
 
 useNimpheaNamespace()
 

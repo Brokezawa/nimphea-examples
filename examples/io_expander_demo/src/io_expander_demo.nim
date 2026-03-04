@@ -47,7 +47,7 @@ var hw: DaisySeed
 ## - Port B pins → 8 LEDs (with resistors to GND)
 
 when MODE_MCP23017:
-  import ../src/dev/mcp23x17
+  import nimphea/dev/mcp23x17
   
   var mcp: Mcp23017
   
@@ -175,7 +175,7 @@ when MODE_SHIFT_REG:
 ## - Slow blink (normal): Active operation
 
 when MODE_CV_EXPANDER:
-  import ../src/dev/max11300
+  import nimphea/dev/max11300
   import std/math
   
   const

@@ -11,7 +11,7 @@
 ## 4. Type messages - they will be echoed back
 
 import nimphea except UsbHandle
-import ../src/hid/usb as usb_module
+import nimphea/hid/usb as usb_module
 useNimpheaNamespace()
 
 

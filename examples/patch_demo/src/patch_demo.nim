@@ -22,7 +22,7 @@
 ## - Audio In/Out: Stereo 3.5mm
 
 import nimphea
-import ../src/boards/daisy_patch
+import nimphea/boards/daisy_patch
 import nimphea/nimphea_macros
 import std/math
 

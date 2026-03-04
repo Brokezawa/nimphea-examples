@@ -7,9 +7,9 @@
 ## - Typical eurorack input handling patterns
 
 import nimphea
-import ../src/per/uart
-import ../src/hid/gatein
-import ../src/hid/switch3
+import nimphea/per/uart
+import nimphea/hid/gatein
+import nimphea/hid/switch3
 useNimpheaNamespace()
 
 proc main() =

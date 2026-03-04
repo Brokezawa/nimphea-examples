@@ -26,9 +26,9 @@
 {.define: useSwitch.}
 
 import nimphea
-import ../src/per/sdmmc as sdmmc_module
+import nimphea/per/sdmmc as sdmmc_module
 import nimphea/nimphea_wavplayer
-import ../src/hid/switch
+import nimphea/hid/switch
 useNimpheaNamespace()
 
 const NUM_SAMPLES = 4

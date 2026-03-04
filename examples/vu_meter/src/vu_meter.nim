@@ -11,8 +11,8 @@
 ## - Uses atomic bool flag to signal new data availability
 
 import nimphea
-import ../src/per/spi
-import ../src/dev/dotstar
+import nimphea/per/spi
+import nimphea/dev/dotstar
 
 useNimpheaNamespace()
 

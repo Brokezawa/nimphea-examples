@@ -30,9 +30,9 @@
 ## Press the button (if connected to D7) or wait 10 seconds to advance modes.
 
 import nimphea
-import ../src/per/adc
-import ../src/hid/ctrl  # For initAdc() helper
-import ../src/per/uart
+import nimphea/per/adc
+import nimphea/hid/ctrl  # For initAdc() helper
+import nimphea/per/uart
 
 useNimpheaNamespace()
 

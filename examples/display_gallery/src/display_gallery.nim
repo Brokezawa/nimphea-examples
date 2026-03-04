@@ -29,13 +29,13 @@
 
 import nimphea
 import nimphea/nimphea_macros
-import ../src/hid/disp/graphics_common
+import nimphea/hid/disp/graphics_common
 
 # Import display drivers (uncomment the one you're using)
-# import ../src/hid/disp/oled_display  # SSD130x series
-# import ../src/dev/oled_sh1106  # SH1106
-# import ../src/dev/oled_ssd1327  # SSD1327 grayscale
-import ../src/dev/oled_ssd1351  # SSD1351 color
+# import nimphea/hid/disp/oled_display  # SSD130x series
+# import nimphea/dev/oled_sh1106  # SH1106
+# import nimphea/dev/oled_ssd1327  # SSD1327 grayscale
+import nimphea/dev/oled_ssd1351  # SSD1351 color
 
 useNimpheaNamespace()
 useNimpheaModules(ssd1351)  # Change based on your display

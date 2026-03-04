@@ -1,7 +1,7 @@
 ## Timer Advanced Example
 import nimphea
-import ../src/per/uart
-import ../src/per/tim
+import nimphea/per/uart
+import nimphea/per/tim
 useNimpheaNamespace()
 
 # Global counters for callbacks

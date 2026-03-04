@@ -21,7 +21,7 @@
 ## - I2C: D11 (SCL), D12 (SDA)
 
 import nimphea
-import ../src/per/uart
+import nimphea/per/uart
 
 useNimpheaNamespace()
 
@@ -44,7 +44,7 @@ var daisy: DaisySeed
 ## - Full-duplex transfer (simultaneous TX/RX)
 
 when MODE_SPI_BASIC:
-  import ../src/per/spi
+  import nimphea/per/spi
   
   proc runSpiBasicDemo() =
     daisy = initDaisy()
@@ -117,8 +117,8 @@ when MODE_SPI_BASIC:
 ## Useful for: Multiple DACs, multiple sensors, display + storage
 
 when MODE_SPI_MULTISLAVE:
-  import ../src/per/spi
-  import ../src/per/spi_multislave
+  import nimphea/per/spi
+  import nimphea/per/spi_multislave
   
   proc runSpiMultislaveDemo() =
     daisy = initDaisy()
@@ -217,7 +217,7 @@ when MODE_SPI_MULTISLAVE:
 ## - 0x50: AT24C32 EEPROM
 
 when MODE_I2C_SCANNER:
-  import ../src/per/i2c
+  import nimphea/per/i2c
   
   proc printHex(val: uint8) =
     const hexChars = "0123456789ABCDEF"

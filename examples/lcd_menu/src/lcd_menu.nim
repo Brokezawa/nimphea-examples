@@ -11,8 +11,8 @@
 ## - Encoder for navigation (optional - using buttons in this example)
 
 import nimphea
-import ../src/hid/ctrl
-import ../src/dev/lcd_hd44780
+import nimphea/hid/ctrl
+import nimphea/dev/lcd_hd44780
 
 useNimpheaNamespace()
 

@@ -2,7 +2,7 @@
 ## 
 ## Output a sine wave using DAC in polling mode
 
-import ../src/per/dac
+import nimphea/per/dac
 import nimphea
 useNimpheaNamespace()
 

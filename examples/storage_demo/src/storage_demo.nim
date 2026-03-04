@@ -22,8 +22,8 @@
 {.define: useQSPI.}
 
 import nimphea
-import ../src/per/qspi as qspi_module  # Use qualified import to avoid ambiguity
-import ../src/per/uart
+import nimphea/per/qspi as qspi_module  # Use qualified import to avoid ambiguity
+import nimphea/per/uart
 
 useNimpheaNamespace()
 

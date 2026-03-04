@@ -1,9 +1,9 @@
 ## Basic Peripherals Example
 import nimphea
-import ../src/per/uart
-import ../src/per/rng
-import ../src/per/tim
-import ../src/hid/led
+import nimphea/per/uart
+import nimphea/per/rng
+import nimphea/per/tim
+import nimphea/hid/led
 useNimpheaNamespace()
 
 proc main() =

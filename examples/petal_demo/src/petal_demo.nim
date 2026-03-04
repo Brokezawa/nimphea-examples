@@ -22,7 +22,7 @@
 ## - SW_1 to SW_4: Footswitches
 ## - SW_5 to SW_7: Toggle switches
 
-import ../src/boards/daisy_petal
+import nimphea/boards/daisy_petal
 import nimphea/nimphea_macros
 
 useNimpheaNamespace()

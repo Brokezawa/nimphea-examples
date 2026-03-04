@@ -21,7 +21,7 @@
 ## ⚠️ Note: These demos require specific sensor hardware.
 
 import nimphea
-import ../src/per/uart
+import nimphea/per/uart
 import std/math
 
 useNimpheaNamespace()
@@ -46,8 +46,8 @@ var daisy: DaisySeed
 ## - LED blinks on motion detection
 
 when MODE_IMU:
-  import ../src/per/i2c
-  import ../src/dev/icm20948
+  import nimphea/per/i2c
+  import nimphea/dev/icm20948
   
   var
     imu: Icm20948I2C
@@ -138,9 +138,9 @@ when MODE_IMU:
 ## - 3D magnetic field
 
 when MODE_ENVIRONMENTAL:
-  import ../src/per/i2c
-  import ../src/dev/dps310
-  import ../src/dev/tlv493d
+  import nimphea/per/i2c
+  import nimphea/dev/dps310
+  import nimphea/dev/tlv493d
   
   const SEA_LEVEL_PRESSURE = 1013.25'f32
   
@@ -233,8 +233,8 @@ when MODE_ENVIRONMENTAL:
 ## - Proximity: Modulation depth
 
 when MODE_GESTURE:
-  import ../src/per/i2c
-  import ../src/dev/apds9960
+  import nimphea/per/i2c
+  import nimphea/dev/apds9960
   
   var
     sensor: Apds9960I2C
@@ -340,9 +340,9 @@ when MODE_GESTURE:
 ## - RGB LED feedback
 
 when MODE_TOUCH_SEQ:
-  import ../src/per/i2c
-  import ../src/dev/mpr121
-  import ../src/dev/neotrellis
+  import nimphea/per/i2c
+  import nimphea/dev/mpr121
+  import nimphea/dev/neotrellis
   
   const NUM_STEPS = 16
   const NUM_NOTES = 12

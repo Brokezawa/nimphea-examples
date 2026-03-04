@@ -1,7 +1,7 @@
 ## LED Control Example
 import nimphea
-import ../src/per/uart
-import ../src/hid/rgb_led
+import nimphea/per/uart
+import nimphea/hid/rgb_led
 import nimphea/nimphea_color
 useNimpheaNamespace()
 

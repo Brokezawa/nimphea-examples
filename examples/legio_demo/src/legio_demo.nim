@@ -24,7 +24,7 @@
 ## - ENCODER: Rotary encoder with button
 
 import nimphea
-import ../src/boards/daisy_legio
+import nimphea/boards/daisy_legio
 
 useNimpheaNamespace()
 

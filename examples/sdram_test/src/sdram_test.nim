@@ -8,7 +8,7 @@
 ## - 3 quick blinks then steady on: Test passed
 
 import nimphea
-import ../src/sys/sdram
+import nimphea/sys/sdram
 useNimpheaNamespace()
 
 

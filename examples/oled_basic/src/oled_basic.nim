@@ -4,7 +4,7 @@
 ## Draws a simple pattern and animation.
 
 import nimphea
-import ../src/hid/disp/oled_display
+import nimphea/hid/disp/oled_display
 
 useNimpheaNamespace()
 

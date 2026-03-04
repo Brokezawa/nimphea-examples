@@ -23,7 +23,7 @@
 ## - LEDs: Visual feedback
 
 import nimphea
-import ../src/boards/daisy_pod
+import nimphea/boards/daisy_pod
 import nimphea/nimphea_macros
 import std/math
 

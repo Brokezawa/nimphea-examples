@@ -12,8 +12,8 @@
 
 import std/math
 import nimphea
-import ../src/per/i2c
-import ../src/dev/leddriver
+import nimphea/per/i2c
+import nimphea/dev/leddriver
 
 useNimpheaNamespace()
 

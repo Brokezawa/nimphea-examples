@@ -24,8 +24,8 @@
 ## - Fast blink during CPU load monitoring
 
 import nimphea
-import ../src/sys/system
-import ../src/hid/logger
+import nimphea/sys/system
+import nimphea/hid/logger
 
 useNimpheaNamespace()
 

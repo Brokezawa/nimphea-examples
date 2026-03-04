@@ -39,7 +39,7 @@
 
 import nimphea
 import nimphea/nimphea_macros
-import ../src/dev/oled_sh1106
+import nimphea/dev/oled_sh1106
 import nimphea/nimphea_ui_events
 import nimphea/nimphea_ui_controls
 import nimphea/nimphea_ui_core

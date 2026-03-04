@@ -21,7 +21,7 @@
 ## - Row 2 (8-15): G#4-D#5 chromatic
 
 import nimphea
-import ../src/boards/daisy_field
+import nimphea/boards/daisy_field
 import nimphea/nimphea_macros
 import std/math
 

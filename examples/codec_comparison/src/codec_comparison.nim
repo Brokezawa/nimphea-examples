@@ -11,10 +11,11 @@
 ## for your hardware version.
 
 import nimphea
-import ../src/per/i2c as i2c_module
-import ../src/dev/codec_ak4556
-import ../src/dev/codec_wm8731
-import ../src/dev/codec_pcm3060
+import nimphea/per/i2c as i2c_module
+import nimphea/dev/codec_ak4556
+import nimphea/dev/codec_wm8731
+import nimphea/dev/codec_pcm3060
+import nimphea/hid/logger
 
 useNimpheaNamespace()
 
@@ -36,13 +37,13 @@ proc initCodecForHardware() =
   case hwVersion
   of BOARD_DAISY_SEED:
     # Daisy Seed 1.0 - AK4556 codec (reset pin only)
-    echo "Detected Daisy Seed 1.0 - Initializing AK4556 codec"
+    printLine("Detected Daisy Seed 1.0 - Initializing AK4556 codec")
     ak4556Codec.init(getPin(0))  # Reset pin
-    echo "AK4556 codec initialized"
+    printLine("AK4556 codec initialized")
     
   of BOARD_DAISY_SEED_1_1:
     # Daisy Seed 1.1 - WM8731 codec (I2C control)
-    echo "Detected Daisy Seed 1.1 - Initializing WM8731 codec"
+    printLine("Detected Daisy Seed 1.1 - Initializing WM8731 codec")
     
     # Initialize I2C
     i2c = initI2C(I2C_1, getPin(11), getPin(12), I2C_400KHZ)
@@ -53,26 +54,29 @@ proc initCodecForHardware() =
     
     let result = wm8731Codec.init(codecCfg, i2c)
     if result == Wm8731Result.OK:
-      echo "WM8731 codec initialized successfully"
+      printLine("WM8731 codec initialized successfully")
     else:
-      echo "WM8731 codec initialization failed!"
+      printLine("WM8731 codec initialization failed!")
       
   of BOARD_DAISY_SEED_2_DFM:
     # Daisy Seed 2.0 - PCM3060 codec (I2C control)
-    echo "Detected Daisy Seed 2.0 - Initializing PCM3060 codec"
+    printLine("Detected Daisy Seed 2.0 - Initializing PCM3060 codec")
     
     # Initialize I2C
     i2c = initI2C(I2C_1, getPin(11), getPin(12), I2C_400KHZ)
     
     let result = pcm3060Codec.init(i2c)
     if result == Pcm3060Result.OK:
-      echo "PCM3060 codec initialized successfully"
+      printLine("PCM3060 codec initialized successfully")
     else:
-      echo "PCM3060 codec initialization failed!"
+      printLine("PCM3060 codec initialization failed!")
 
 proc main() =
   # Initialize Daisy Seed hardware
   seed.init()
+  
+  # Start USB logging
+  startLog()
   
   # Initialize appropriate codec for this hardware
   initCodecForHardware()

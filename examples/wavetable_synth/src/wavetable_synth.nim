@@ -28,9 +28,9 @@
 {.define: useADC.}
 
 import nimphea
-import ../src/per/sdmmc as sdmmc_module
+import nimphea/per/sdmmc as sdmmc_module
 import nimphea/nimphea_wavetable_loader
-import ../src/per/adc as adc_module  # Import as qualified module
+import nimphea/per/adc as adc_module  # Import as qualified module
 import std/math
 useNimpheaNamespace()
 

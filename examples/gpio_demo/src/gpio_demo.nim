@@ -25,8 +25,8 @@
 ## **Modes**: Cycles through different demos automatically.
 
 import nimphea
-import ../src/hid/ctrl
-import ../src/per/uart
+import nimphea/hid/ctrl
+import nimphea/per/uart
 
 useNimpheaNamespace()
 

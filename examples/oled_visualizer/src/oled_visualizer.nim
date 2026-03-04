@@ -4,8 +4,8 @@
 ## Connect a potentiometer to A0 for interactive control.
 
 import nimphea
-import ../src/hid/disp/oled_display
-import ../src/per/adc
+import nimphea/hid/disp/oled_display
+import nimphea/per/adc
 
 useNimpheaNamespace()
 
